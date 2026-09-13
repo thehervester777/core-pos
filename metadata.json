@@ -1,0 +1,6 @@
+{
+  "name": "core Agency - Intelligent Cloud POS System",
+  "description": "Manage all types of business in Bangladesh with core Agency's intelligent, multi-sector POS system. Supporting offline billing, local payments (bKash/Nagad), SMS alerts, and multi-branch management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

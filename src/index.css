@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: "Inter", sans-serif;
+  --color-bg-base: #050505;
+  --color-bg-surface: #0A0A0A;
+  --color-accent: #3B82F6;
+}
+
+:root {
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: "Inter", sans-serif;
+  --color-bg-base: #050505;
+  --color-bg-surface: #0A0A0A;
+  --color-bg-glass: rgba(5, 5, 5, 0.6);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #525252;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-accent: #3b82f6;
+  --color-hover-bg: #111111;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  background-color: #050505;
+  color: #ffffff;
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .font-serif, .serif-text {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+button, input, textarea {
+  font-family: var(--font-sans);
+}
+
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.hero-field {
+  background: radial-gradient(circle at 50% 45%, #fff3, #0000 34%),
+    repeating-radial-gradient(circle at 50% 45%, #ffffff1f 0 1px, #0000 1px 7px),
+    linear-gradient(135deg, #050505 15%, #151515 50%, #050505 85%);
+  -webkit-mask-image: radial-gradient(#000 5%, #0000 72%);
+  mask-image: radial-gradient(#000 5%, #0000 72%);
+}
+
+@media (max-width: 767px) {
+  .hero-second-line {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    line-height: 1.1;
+  }
+}
+
+.header {
+  border-radius: 100px;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

@@ -157,6 +157,39 @@ button, input, textarea {
   transform: translateX(300%) skewX(-20deg);
 }
 
+@keyframes orbit-revolve {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-counter-revolve {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-orbit-cw {
+  animation: orbit-revolve 26s linear infinite;
+  will-change: transform;
+}
+
+.animate-orbit-ccw {
+  animation: orbit-counter-revolve 26s linear infinite;
+  will-change: transform;
+}
+
+.orbit-system:hover .animate-orbit-cw,
+.orbit-system:hover .animate-orbit-ccw {
+  animation-play-state: paused;
+}
+
 @media (max-width: 767px) {
   .hero-second-line {
     font-size: clamp(1.8rem, 8vw, 2.5rem);

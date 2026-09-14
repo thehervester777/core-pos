@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import AgencyCloudDashboard from './AgencyCloudDashboard';
 
 interface HeroProps {
   onNavigate?: (id: string) => void;
@@ -11,7 +12,6 @@ export default function Hero({ onNavigate }: HeroProps) {
   const word2Ref = useRef<HTMLDivElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
   const ctaContainerRef = useRef<HTMLDivElement>(null);
-  const pillsRef = useRef<HTMLDivElement>(null);
 
   const handleCtaClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -46,17 +46,10 @@ export default function Hero({ onNavigate }: HeroProps) {
         autoAlpha: 0,
       });
     }
-    if (pillsRef.current) {
-      gsap.set(pillsRef.current.children, {
-        y: 12,
-        autoAlpha: 0,
-        scale: 0.95,
-      });
-    }
 
     if (bgRef.current) {
       tl.to(bgRef.current, {
-        autoAlpha: 0.7,
+        autoAlpha: 0.6,
         scale: 1,
         duration: 2.5,
         ease: 'power2.out',
@@ -90,21 +83,6 @@ export default function Hero({ onNavigate }: HeroProps) {
       );
     }
 
-    if (pillsRef.current) {
-      tl.to(
-        pillsRef.current.children,
-        {
-          y: 0,
-          autoAlpha: 1,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.05,
-          ease: 'back.out(1.4)',
-        },
-        '-=0.8',
-      );
-    }
-
     if (ctaContainerRef.current) {
       tl.to(
         ctaContainerRef.current,
@@ -114,7 +92,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           duration: 1.2,
           ease: 'power3.out',
         },
-        '-=0.8',
+        '-=1.0',
       );
     }
 
@@ -162,9 +140,8 @@ export default function Hero({ onNavigate }: HeroProps) {
         ref={bgRef}
         className="absolute -inset-12 z-0 pointer-events-none will-change-transform hero-field"
       >
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-blue-400/25 via-sky-300/30 to-blue-600/15 blur-[120px] rounded-full animate-float-slow" />
-        <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-cyan-300/25 blur-[90px] rounded-full animate-float-reverse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[280px] h-[280px] bg-blue-300/20 blur-[80px] rounded-full animate-float-slow" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-blue-400/25 via-sky-300/30 to-blue-600/15 blur-[120px] rounded-full" />
+        <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-cyan-300/20 blur-[90px] rounded-full" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#F0F7FF]/20 via-transparent to-[#F0F7FF]" />
       </div>
 
@@ -199,11 +176,11 @@ export default function Hero({ onNavigate }: HeroProps) {
         </p>
 
         {/* Industry Pills */}
-        <div ref={pillsRef} className="mt-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-2xl px-2">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-2xl px-2">
           {['Retail POS', 'Pharmacy POS', 'Restaurant POS', 'NBR VAT', 'Ecommerce Sync', 'Distribution ERP'].map((tag) => (
             <span
               key={tag}
-              className="text-[10px] sm:text-[11px] md:text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-blue-200/70 text-blue-800 shadow-[0_2px_8px_rgba(37,99,235,0.06)] font-medium transition-transform duration-200 hover:scale-105"
+              className="text-[10px] sm:text-[11px] md:text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-blue-200/70 text-blue-800 shadow-[0_2px_8px_rgba(37,99,235,0.06)] font-medium"
             >
               {tag}
             </span>
@@ -215,7 +192,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             id="hero-cta-terminal"
             href="#terminal"
             onClick={(e) => handleCtaClick(e, '#terminal')}
-            className="btn-shimmer w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full font-sans font-medium hover:from-blue-700 hover:to-blue-600 transition-all duration-300 cursor-pointer shadow-[0_8px_25px_rgba(37,99,235,0.32)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 inline-block"
+            className="w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full font-sans font-medium hover:from-blue-700 hover:to-blue-600 transition-all duration-300 cursor-pointer shadow-[0_8px_25px_rgba(37,99,235,0.32)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.45)] inline-block"
           >
             Launch Live Terminal
           </a>
@@ -223,10 +200,53 @@ export default function Hero({ onNavigate }: HeroProps) {
             id="hero-cta-features"
             href="#features"
             onClick={(e) => handleCtaClick(e, '#features')}
-            className="w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-white/80 backdrop-blur-md text-slate-800 border border-blue-200/80 rounded-full font-sans font-medium hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 transition-all duration-300 cursor-pointer shadow-[0_4px_16px_rgba(37,99,235,0.08)] hover:-translate-y-0.5 inline-block"
+            className="w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-white/80 backdrop-blur-md text-slate-800 border border-blue-200/80 rounded-full font-sans font-medium hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 transition-all duration-300 cursor-pointer shadow-[0_4px_16px_rgba(37,99,235,0.08)] inline-block"
           >
             Explore Features Map
           </a>
+        </div>
+
+        {/* Hero Real-time Stats (from Netlify Original) */}
+        <div className="mt-12 sm:mt-16 w-full max-w-3xl mx-auto grid grid-cols-3 gap-3 sm:gap-6 pt-8 border-t border-blue-200/60 text-center">
+          <div className="flex flex-col items-center">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 font-serif tracking-tight">
+              10,000+
+            </h3>
+            <p className="text-[11px] sm:text-xs text-slate-500 font-sans font-medium mt-1">
+              Active Outlets
+            </p>
+          </div>
+          <div className="flex flex-col items-center border-x border-blue-200/60 px-2 sm:px-4">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-600 font-serif tracking-tight">
+              ৳50 Billion+
+            </h3>
+            <p className="text-[11px] sm:text-xs text-slate-500 font-sans font-medium mt-1">
+              Sales Processed
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 font-serif tracking-tight">
+              99.99%
+            </h3>
+            <p className="text-[11px] sm:text-xs text-slate-500 font-sans font-medium mt-1">
+              Replication Uptime
+            </p>
+          </div>
+        </div>
+
+        {/* macOS-Style core Agency Cloud Dashboard Mockup */}
+        <div className="w-full mt-10 sm:mt-14 relative z-20">
+          <AgencyCloudDashboard />
+        </div>
+
+        {/* Interactive Demo Scroll Indicator */}
+        <div className="mt-8 flex flex-col items-center gap-2 text-slate-400 select-none pb-2">
+          <span className="text-[10px] sm:text-[11px] font-mono tracking-widest uppercase font-semibold text-slate-500">
+            Interactive Cloud Demo &bull; Click Tabs To Explore
+          </span>
+          <div className="w-5 h-8 rounded-full border-2 border-slate-300 flex items-start justify-center p-1">
+            <div className="w-1.5 h-2 rounded-full bg-blue-500 animate-bounce" />
+          </div>
         </div>
       </div>
     </section>

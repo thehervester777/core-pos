@@ -100,31 +100,8 @@ export default function RoiEstimator() {
 
               {/* Circular Gauge / Capacity */}
               <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-blue-50/70 border border-blue-200/60 flex flex-col items-center justify-center text-center shadow-xs">
-                <div className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center">
-                  {/* SVG Gauge */}
-                  <svg className="w-full h-full -rotate-90 transform" viewBox="0 0 44 44">
-                    <circle
-                      cx="22"
-                      cy="22"
-                      r="18"
-                      stroke="#DBEAFE"
-                      strokeWidth="3.5"
-                      fill="white"
-                    />
-                    <circle
-                      cx="22"
-                      cy="22"
-                      r="18"
-                      stroke="#2563EB"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                      fill="transparent"
-                      strokeDasharray={113}
-                      strokeDashoffset={113 - (capacityGain / 100) * 113 * 2.2}
-                      className="transition-all duration-300 ease-out"
-                    />
-                  </svg>
-                  <div className="absolute text-xs sm:text-sm font-mono font-bold text-blue-700">
+                <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-blue-500 bg-white shadow-xs flex items-center justify-center">
+                  <div className="text-sm sm:text-base font-mono font-bold text-blue-700">
                     {capacityGain}%
                   </div>
                 </div>

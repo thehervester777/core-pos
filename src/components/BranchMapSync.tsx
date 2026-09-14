@@ -91,7 +91,6 @@ export default function BranchMapSync() {
             <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-white/80 border border-blue-200/70 shadow-xs backdrop-blur-md flex flex-col gap-3">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                   <h4 className="font-semibold text-slate-900 text-sm sm:text-base">{selectedBranch.name}</h4>
                 </div>
                 <span className="text-[11px] sm:text-xs font-mono text-slate-400">Ping: {selectedBranch.latency}</span>
@@ -142,22 +141,6 @@ export default function BranchMapSync() {
               {/* Silhouette outline hint */}
               <div className="w-48 sm:w-56 h-56 sm:h-64 border border-dashed border-blue-200 rounded-[40px] absolute transform rotate-6 pointer-events-none" />
 
-              {/* Animated Network Ray SVG Canvas */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
-                <defs>
-                  <linearGradient id="rayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.2" />
-                  </linearGradient>
-                </defs>
-                {/* Dhaka to Rajshahi */}
-                <line x1="50%" y1="48%" x2="30%" y2="38%" stroke="url(#rayGrad)" strokeWidth="1.5" strokeDasharray="3 3" className="opacity-60" />
-                {/* Dhaka to Sylhet */}
-                <line x1="50%" y1="48%" x2="68%" y2="28%" stroke="url(#rayGrad)" strokeWidth="1.5" strokeDasharray="3 3" className="opacity-60" />
-                {/* Dhaka to Chittagong */}
-                <line x1="50%" y1="48%" x2="68%" y2="72%" stroke="url(#rayGrad)" strokeWidth="1.5" strokeDasharray="3 3" className="opacity-60" />
-              </svg>
-
               {/* Branch Markers */}
               {branches.map((branch) => {
                 const isSelected = selectedBranch.id === branch.id;
@@ -168,24 +151,27 @@ export default function BranchMapSync() {
                     onClick={() => setSelectedBranch(branch)}
                     onMouseEnter={() => setSelectedBranch(branch)}
                     style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer focus:outline-none z-10"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer focus:outline-none"
                   >
                     <div className="relative flex items-center justify-center">
-                      {isSelected && (
-                        <span className="absolute w-8 h-8 rounded-full border border-blue-500 animate-radar-ring pointer-events-none" />
-                      )}
+                      {/* Ambient Rounded Beacon Wave */}
                       <span
                         className={`absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-all ${
                           isSelected
-                            ? 'bg-blue-500/25 scale-125'
-                            : 'bg-blue-400/10 group-hover:bg-blue-500/20'
+                            ? 'bg-blue-500/35 animate-rounded-ripple'
+                            : 'bg-blue-400/20 animate-rounded-beacon group-hover:bg-blue-500/30'
                         }`}
                       />
+                      {/* Secondary Concentric Wave for Selected Node */}
+                      {isSelected && (
+                        <span className="absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-500/25 animate-rounded-ripple-delayed" />
+                      )}
+                      {/* Center Rounded Point */}
                       <span
-                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border-2 transition-all ${
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border-2 transition-all relative z-10 ${
                           isSelected
-                            ? 'bg-blue-600 border-white scale-125 shadow-md ring-4 ring-blue-500/20'
-                            : 'bg-white border-blue-500 group-hover:bg-blue-500 shadow-xs'
+                            ? 'bg-blue-600 border-white scale-125 shadow-[0_0_14px_rgba(37,99,235,0.7)] animate-rounded-beacon'
+                            : 'bg-white border-blue-500 group-hover:bg-blue-500 group-hover:scale-110 shadow-xs'
                         }`}
                       />
                     </div>
@@ -193,7 +179,7 @@ export default function BranchMapSync() {
                       className={`absolute top-4 sm:top-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded-full transition-all ${
                         isSelected
                           ? 'bg-blue-600 text-white font-bold shadow-md'
-                          : 'bg-white/95 text-slate-700 border border-blue-200/80 group-hover:text-blue-600 shadow-xs backdrop-blur-xs font-medium'
+                          : 'bg-white/90 text-slate-700 border border-blue-200/80 group-hover:text-blue-600 shadow-xs backdrop-blur-xs font-medium'
                       }`}
                     >
                       {branch.division}

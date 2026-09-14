@@ -58,15 +58,6 @@ export default function Showcase() {
     };
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--mouse-x', `${x}px`);
-    card.style.setProperty('--mouse-y', `${y}px`);
-  };
-
   return (
     <section
       id="features"
@@ -91,18 +82,8 @@ export default function Showcase() {
             <div
               key={i}
               id={`service-card-${i + 1}`}
-              onMouseMove={handleMouseMove}
               className="service-grid-card group relative w-full min-h-[380px] sm:min-h-[420px] md:h-[65vh] lg:h-[75vh] rounded-2xl sm:rounded-3xl overflow-hidden border border-blue-200/70 bg-white/80 hover:bg-white/95 backdrop-blur-2xl transition-all duration-500 cursor-default flex flex-col justify-between p-6 sm:p-8 shadow-[0_12px_40px_-8px_rgba(37,99,235,0.12),0_1px_2px_rgba(255,255,255,0.95)_inset] hover:shadow-[0_20px_50px_-8px_rgba(37,99,235,0.2),0_1px_2px_rgba(255,255,255,1)_inset] hover:border-blue-400/80"
             >
-              {/* Dynamic mouse-following specular shine */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10"
-                style={{
-                  background:
-                    'radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.12), transparent 60%)',
-                }}
-              />
-
               {/* Sleek gradient base */}
               <div className="absolute inset-0 bg-gradient-to-t from-blue-50/80 via-transparent to-transparent z-10 pointer-events-none" />
 

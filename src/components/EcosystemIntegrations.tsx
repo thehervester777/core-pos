@@ -10,65 +10,59 @@ export default function EcosystemIntegrations() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left: Orbit Visual (5 cols) */}
-          <div className="lg:col-span-5 flex items-center justify-center py-6 sm:py-0 overflow-visible">
-            <div className="orbit-system relative w-64 h-64 sm:w-76 sm:h-76 md:w-80 md:h-80 rounded-full border border-blue-200/80 flex items-center justify-center shrink-0 bg-white/40 backdrop-blur-sm shadow-[0_10px_40px_rgba(37,99,235,0.06)]">
-              {/* Concentric radar rings */}
-              <div className="absolute w-44 h-44 sm:w-52 sm:h-52 rounded-full border border-blue-100/80 pointer-events-none" />
-              <div className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-full border border-dashed border-blue-200/60 pointer-events-none animate-[spin_40s_linear_infinite_reverse]" />
+          <div className="lg:col-span-5 flex items-center justify-center py-4 sm:py-0 overflow-visible">
+            <div className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full border border-blue-200/80 flex items-center justify-center shrink-0 bg-white/50 backdrop-blur-sm shadow-[0_10px_40px_rgba(37,99,235,0.06)] group">
+              {/* Pulsing Central Hub Rounded Ripples */}
+              <div className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-blue-400/20 animate-rounded-ripple pointer-events-none" />
+              <div className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-blue-400/20 animate-rounded-ripple-delayed pointer-events-none" />
 
-              {/* Pulsing Central Hub */}
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white font-serif font-bold text-sm sm:text-base flex flex-col items-center justify-center shadow-[0_10px_35px_rgba(37,99,235,0.4)] z-20 text-center px-2 select-none group">
-                <span className="relative z-10">core POS</span>
-                <span className="relative z-10 text-[9px] font-mono font-normal uppercase tracking-wider text-blue-100">Hub</span>
-                {/* Central radar ring */}
-                <span className="absolute inset-0 rounded-full bg-blue-500/30 animate-radar-ring pointer-events-none" />
+              {/* Central Hub */}
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white font-serif font-bold text-sm sm:text-base flex flex-col items-center justify-center shadow-[0_10px_35px_rgba(37,99,235,0.4)] z-10 text-center px-2 animate-rounded-beacon">
+                <span>core POS</span>
+                <span className="text-[9px] font-mono font-normal uppercase tracking-wider text-blue-100">Hub</span>
               </div>
 
-              {/* Dashed Perimeter Orbit Ring */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-blue-300/80 pointer-events-none" />
+              {/* Orbit Dashed Circular Track */}
+              <div className="absolute inset-0 rounded-full border border-dashed border-blue-300 pointer-events-none" />
 
-              {/* Orbiting Satellite Carrier (Continuous Round Orbit Animation) */}
-              <div className="absolute inset-0 rounded-full animate-orbit-cw pointer-events-auto">
+              {/* Orbiting Container for Satellite Nodes */}
+              <div className="absolute inset-0 rounded-full animate-orbit pointer-events-none group-hover:[animation-play-state:paused]">
                 {/* Satellite Node 1: Courier (Top) */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="animate-orbit-ccw group cursor-pointer">
-                    <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_18px_rgba(37,99,235,0.15)] whitespace-nowrap backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-blue-400 group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.25)]">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <Truck className="w-3.5 h-3.5 text-blue-600 transition-transform group-hover:-translate-x-0.5" />
-                      <span className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">Courier</span>
+                <div className="absolute -top-3.5 sm:-top-4 left-1/2 -translate-x-1/2 pointer-events-auto">
+                  <div className="animate-counter-orbit group-hover:[animation-play-state:paused]">
+                    <div className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_16px_rgba(37,99,235,0.14)] whitespace-nowrap backdrop-blur-md hover:border-blue-400 hover:scale-105 transition-transform cursor-pointer">
+                      <Truck className="w-3.5 h-3.5 text-blue-600" />
+                      <span className="font-semibold">Courier</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Satellite Node 2: SMS (Right) */}
-                <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2">
-                  <div className="animate-orbit-ccw group cursor-pointer">
-                    <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_18px_rgba(37,99,235,0.15)] whitespace-nowrap backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-blue-400 group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.25)]">
-                      <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                      <MessageSquare className="w-3.5 h-3.5 text-blue-600 transition-transform group-hover:scale-110" />
-                      <span className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">SMS</span>
+                <div className="absolute top-1/2 -right-2 sm:-right-4 -translate-y-1/2 pointer-events-auto">
+                  <div className="animate-counter-orbit group-hover:[animation-play-state:paused]">
+                    <div className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_16px_rgba(37,99,235,0.14)] whitespace-nowrap backdrop-blur-md hover:border-blue-400 hover:scale-105 transition-transform cursor-pointer">
+                      <MessageSquare className="w-3.5 h-3.5 text-blue-600" />
+                      <span className="font-semibold">SMS</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Satellite Node 3: Ledger (Bottom) */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-                  <div className="animate-orbit-ccw group cursor-pointer">
-                    <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_18px_rgba(37,99,235,0.15)] whitespace-nowrap backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-blue-400 group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.25)]">
-                      <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-                      <BarChart2 className="w-3.5 h-3.5 text-blue-600 transition-transform group-hover:scale-110" />
-                      <span className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">Ledger</span>
+                <div className="absolute -bottom-3.5 sm:-bottom-4 left-1/2 -translate-x-1/2 pointer-events-auto">
+                  <div className="animate-counter-orbit group-hover:[animation-play-state:paused]">
+                    <div className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_16px_rgba(37,99,235,0.14)] whitespace-nowrap backdrop-blur-md hover:border-blue-400 hover:scale-105 transition-transform cursor-pointer">
+                      <BarChart2 className="w-3.5 h-3.5 text-blue-600" />
+                      <span className="font-semibold">Ledger</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Satellite Node 4: Banks & MFS (Left) */}
-                <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2">
-                  <div className="animate-orbit-ccw group cursor-pointer">
-                    <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_18px_rgba(37,99,235,0.15)] whitespace-nowrap backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-blue-400 group-hover:shadow-[0_8px_25px_rgba(37,99,235,0.25)]">
-                      <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                      <CreditCard className="w-3.5 h-3.5 text-blue-600 transition-transform group-hover:scale-110" />
-                      <span className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">Banks & MFS</span>
+                <div className="absolute top-1/2 -left-2 sm:-left-6 -translate-y-1/2 pointer-events-auto">
+                  <div className="animate-counter-orbit group-hover:[animation-play-state:paused]">
+                    <div className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/95 border border-blue-200/90 text-[11px] sm:text-xs font-mono text-slate-800 flex items-center gap-1.5 shadow-[0_4px_16px_rgba(37,99,235,0.14)] whitespace-nowrap backdrop-blur-md hover:border-blue-400 hover:scale-105 transition-transform cursor-pointer">
+                      <CreditCard className="w-3.5 h-3.5 text-blue-600" />
+                      <span className="font-semibold">Banks & MFS</span>
                     </div>
                   </div>
                 </div>

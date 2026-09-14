@@ -33,8 +33,7 @@ export default function Stats() {
           start: 'top 80%',
         },
         onUpdate: () => {
-          const num = Math.ceil(obj.val);
-          (counter as HTMLElement).innerText = num.toLocaleString();
+          (counter as HTMLElement).innerText = Math.ceil(obj.val).toString();
         },
       });
       anims.push(anim);

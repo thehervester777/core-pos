@@ -70,124 +70,6 @@ button, input, textarea {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.95);
   box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 1px 2px rgba(255, 255, 255, 0.9) inset;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes float-ambient {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(12px, -18px) scale(1.04);
-  }
-}
-
-@keyframes pulse-radar {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(2.2);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-}
-
-@keyframes scan-laser {
-  0% {
-    top: 0%;
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    top: 100%;
-    opacity: 0;
-  }
-}
-
-@keyframes shimmer-sweep {
-  0% {
-    transform: translateX(-100%) skewX(-15deg);
-  }
-  100% {
-    transform: translateX(200%) skewX(-15deg);
-  }
-}
-
-.animate-float-slow {
-  animation: float-ambient 8s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: float-ambient 11s ease-in-out infinite reverse;
-}
-
-.animate-radar-ring {
-  animation: pulse-radar 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-.btn-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transform: translateX(-150%) skewX(-20deg);
-  transition: transform 0.6s ease;
-  pointer-events: none;
-}
-
-.btn-shimmer:hover::after {
-  transform: translateX(300%) skewX(-20deg);
-}
-
-@keyframes orbit-revolve {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes orbit-counter-revolve {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-.animate-orbit-cw {
-  animation: orbit-revolve 26s linear infinite;
-  will-change: transform;
-}
-
-.animate-orbit-ccw {
-  animation: orbit-counter-revolve 26s linear infinite;
-  will-change: transform;
-}
-
-.orbit-system:hover .animate-orbit-cw,
-.orbit-system:hover .animate-orbit-ccw {
-  animation-play-state: paused;
 }
 
 @media (max-width: 767px) {
@@ -216,3 +98,97 @@ html.lenis, html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+@keyframes drawPath {
+  0% {
+    stroke-dashoffset: 600px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.neon-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600px;
+  animation: 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards drawPath;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Rounded Orbit & Ripple Animations */
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitCounterSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbitSpin 32s linear infinite;
+}
+
+.animate-counter-orbit {
+  animation: orbitCounterSpin 32s linear infinite;
+}
+
+@keyframes roundedRipple {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes roundedBeacon {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+  }
+}
+
+.animate-rounded-ripple {
+  animation: roundedRipple 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.animate-rounded-ripple-delayed {
+  animation: roundedRipple 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation-delay: 1.1s;
+}
+
+.animate-rounded-beacon {
+  animation: roundedBeacon 2.4s ease-in-out infinite;
+}
+

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Printer, Award, MapPin, FileText, CreditCard, Layers, Bell } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 
 export default function ReceiptStudio() {
   const [showLogo, setShowLogo] = useState(true);
@@ -147,37 +146,17 @@ export default function ReceiptStudio() {
             <div className="bg-white/95 border border-blue-200/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 w-full max-w-sm font-mono text-xs shadow-[0_20px_50px_-10px_rgba(37,99,235,0.14),0_0_0_1px_rgba(255,255,255,0.8)_inset] backdrop-blur-xl relative text-slate-800">
               {/* Header */}
               <div className="text-center pb-4 border-b border-dashed border-blue-200">
-                <AnimatePresence>
-                  {showLogo && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="text-base font-bold text-blue-600 tracking-widest mb-1">
-                        core Agency POS
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {showLogo && (
+                  <div className="text-base font-bold text-blue-600 tracking-widest mb-1 transition-all">
+                    core Agency POS
+                  </div>
+                )}
                 <div className="text-slate-900 font-sans font-bold text-sm">SMART RETAIL DEMO LTD.</div>
-                <AnimatePresence>
-                  {showAddress && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="text-slate-500 text-[11px] mt-0.5">
-                        Sector 11, Uttara, Dhaka-1230
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {showAddress && (
+                  <div className="text-slate-500 text-[11px] mt-0.5 transition-all">
+                    Sector 11, Uttara, Dhaka-1230
+                  </div>
+                )}
                 <div className="text-slate-400 text-[11px] mt-0.5 font-medium">BIN: 002345678-0101</div>
               </div>
 
@@ -212,39 +191,19 @@ export default function ReceiptStudio() {
                   <span className="font-medium text-slate-800">৳{subtotal.toFixed(2)}</span>
                 </div>
 
-                <AnimatePresence>
-                  {showDiscount && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="flex justify-between text-emerald-600 font-semibold">
-                        <span>Promo Discount:</span>
-                        <span>-৳{discount.toFixed(2)}</span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {showDiscount && (
+                  <div className="flex justify-between text-emerald-600 font-semibold transition-all">
+                    <span>Promo Discount:</span>
+                    <span>-৳{discount.toFixed(2)}</span>
+                  </div>
+                )}
 
-                <AnimatePresence>
-                  {showVat && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="flex justify-between">
-                        <span>NBR VAT (5%):</span>
-                        <span className="font-medium text-slate-800">৳{vat.toFixed(2)}</span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {showVat && (
+                  <div className="flex justify-between transition-all">
+                    <span>NBR VAT (5%):</span>
+                    <span className="font-medium text-slate-800">৳{vat.toFixed(2)}</span>
+                  </div>
+                )}
 
                 <div className="flex justify-between text-sm font-bold text-slate-900 pt-2 border-t border-blue-200">
                   <span>Net Total:</span>
@@ -254,46 +213,30 @@ export default function ReceiptStudio() {
 
               {/* Footer */}
               <div className="pt-4 text-center flex flex-col items-center gap-3">
-                <AnimatePresence>
-                  {showGreetings && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="font-sans font-semibold text-slate-800 text-[11px]">Thank You for Shopping!</div>
-                      <div className="text-[10px] text-slate-500">Goods once sold cannot be returned.</div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {showGreetings && (
+                  <div className="transition-all">
+                    <div className="font-sans font-semibold text-slate-800 text-[11px]">Thank You for Shopping!</div>
+                    <div className="text-[10px] text-slate-500">Goods once sold cannot be returned.</div>
+                  </div>
+                )}
 
-                <AnimatePresence>
-                  {showBarcode && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col items-center pt-1 overflow-hidden"
-                    >
-                      <div className="w-36 h-7 bg-blue-50 border border-blue-100 flex items-center justify-center rounded">
-                        <div className="flex items-center gap-1">
-                          <div className="w-1 h-5 bg-slate-800" />
-                          <div className="w-0.5 h-5 bg-slate-800" />
-                          <div className="w-1.5 h-5 bg-slate-800" />
-                          <div className="w-0.5 h-5 bg-slate-800" />
-                          <div className="w-1 h-5 bg-slate-800" />
-                          <div className="w-2 h-5 bg-slate-800" />
-                          <div className="w-0.5 h-5 bg-slate-800" />
-                          <div className="w-1 h-5 bg-slate-800" />
-                        </div>
+                {showBarcode && (
+                  <div className="flex flex-col items-center transition-all pt-1">
+                    <div className="w-36 h-7 bg-blue-50 border border-blue-100 flex items-center justify-center rounded">
+                      <div className="flex items-center gap-1">
+                        <div className="w-1 h-5 bg-slate-800" />
+                        <div className="w-0.5 h-5 bg-slate-800" />
+                        <div className="w-1.5 h-5 bg-slate-800" />
+                        <div className="w-0.5 h-5 bg-slate-800" />
+                        <div className="w-1 h-5 bg-slate-800" />
+                        <div className="w-2 h-5 bg-slate-800" />
+                        <div className="w-0.5 h-5 bg-slate-800" />
+                        <div className="w-1 h-5 bg-slate-800" />
                       </div>
-                      <span className="text-[10px] text-slate-400 mt-1 font-mono">*INV-90487*</span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    </div>
+                    <span className="text-[10px] text-slate-400 mt-1 font-mono">*INV-90487*</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

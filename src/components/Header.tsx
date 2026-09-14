@@ -192,10 +192,6 @@ export default function Header({ onNavigate }: HeaderProps) {
           >
             <Logo variant="light" />
           </a>
-          <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200/70 text-[10px] font-mono text-blue-700 font-medium tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            Cloud POS
-          </span>
         </div>
 
         {/* Desktop Navigation */}
@@ -212,6 +208,15 @@ export default function Header({ onNavigate }: HeaderProps) {
             </li>
             <li ref={(el) => (navItemsRef.current[1] = el)}>
               <a
+                href="#cloud-dashboard"
+                onClick={(e) => handleScroll(e, '#cloud-dashboard')}
+                className="px-3 py-1.5 rounded-full text-slate-600 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200 tracking-wide inline-block font-medium"
+              >
+                Dashboard
+              </a>
+            </li>
+            <li ref={(el) => (navItemsRef.current[2] = el)}>
+              <a
                 href="#industries"
                 onClick={(e) => handleScroll(e, '#industries')}
                 className="px-3 py-1.5 rounded-full text-slate-600 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200 tracking-wide inline-block font-medium"
@@ -219,7 +224,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                 Industries
               </a>
             </li>
-            <li ref={(el) => (navItemsRef.current[2] = el)}>
+            <li ref={(el) => (navItemsRef.current[3] = el)}>
               <a
                 href="#terminal"
                 onClick={(e) => handleScroll(e, '#terminal')}
@@ -228,7 +233,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                 Terminal
               </a>
             </li>
-            <li ref={(el) => (navItemsRef.current[3] = el)}>
+            <li ref={(el) => (navItemsRef.current[4] = el)}>
               <a
                 href="#roi-calculator"
                 onClick={(e) => handleScroll(e, '#roi-calculator')}
@@ -237,7 +242,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                 ROI
               </a>
             </li>
-            <li ref={(el) => (navItemsRef.current[4] = el)}>
+            <li ref={(el) => (navItemsRef.current[5] = el)}>
               <a
                 href="#faq"
                 onClick={(e) => handleScroll(e, '#faq')}
@@ -288,7 +293,7 @@ export default function Header({ onNavigate }: HeaderProps) {
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-blue-400 opacity-[0.12] blur-[100px] rounded-full pointer-events-none" />
 
-        <ul className="flex flex-col space-y-4 text-left relative z-10 my-auto py-6">
+        <ul className="flex flex-col space-y-3 sm:space-y-4 text-left relative z-10 my-auto py-6">
           <li className="overflow-hidden">
             <a
               ref={(el) => (mobileLinksRef.current[0] = el)}
@@ -302,6 +307,17 @@ export default function Header({ onNavigate }: HeaderProps) {
           <li className="overflow-hidden">
             <a
               ref={(el) => (mobileLinksRef.current[1] = el)}
+              href="#cloud-dashboard"
+              onClick={(e) => handleScroll(e, '#cloud-dashboard')}
+              className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1 flex items-center gap-2"
+            >
+              <span>Cloud Dashboard</span>
+              <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-mono font-semibold">Live</span>
+            </a>
+          </li>
+          <li className="overflow-hidden">
+            <a
+              ref={(el) => (mobileLinksRef.current[2] = el)}
               href="#industries"
               onClick={(e) => handleScroll(e, '#industries')}
               className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1"
@@ -311,7 +327,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           </li>
           <li className="overflow-hidden">
             <a
-              ref={(el) => (mobileLinksRef.current[2] = el)}
+              ref={(el) => (mobileLinksRef.current[3] = el)}
               href="#terminal"
               onClick={(e) => handleScroll(e, '#terminal')}
               className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1"
@@ -321,7 +337,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           </li>
           <li className="overflow-hidden">
             <a
-              ref={(el) => (mobileLinksRef.current[3] = el)}
+              ref={(el) => (mobileLinksRef.current[4] = el)}
               href="#use-cases"
               onClick={(e) => handleScroll(e, '#use-cases')}
               className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1"
@@ -331,7 +347,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           </li>
           <li className="overflow-hidden">
             <a
-              ref={(el) => (mobileLinksRef.current[4] = el)}
+              ref={(el) => (mobileLinksRef.current[5] = el)}
               href="#roi-calculator"
               onClick={(e) => handleScroll(e, '#roi-calculator')}
               className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1"
@@ -341,7 +357,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           </li>
           <li className="overflow-hidden">
             <a
-              ref={(el) => (mobileLinksRef.current[5] = el)}
+              ref={(el) => (mobileLinksRef.current[6] = el)}
               href="#receipt-studio"
               onClick={(e) => handleScroll(e, '#receipt-studio')}
               className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1"
@@ -351,7 +367,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           </li>
           <li className="overflow-hidden">
             <a
-              ref={(el) => (mobileLinksRef.current[6] = el)}
+              ref={(el) => (mobileLinksRef.current[7] = el)}
               href="#cloud-sync"
               onClick={(e) => handleScroll(e, '#cloud-sync')}
               className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1"
@@ -361,7 +377,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           </li>
           <li className="overflow-hidden">
             <a
-              ref={(el) => (mobileLinksRef.current[7] = el)}
+              ref={(el) => (mobileLinksRef.current[8] = el)}
               href="#faq"
               onClick={(e) => handleScroll(e, '#faq')}
               className="block text-2xl sm:text-3xl font-sans font-light text-slate-800 hover:text-blue-600 transition-colors will-change-transform py-1"
@@ -371,7 +387,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           </li>
           <li className="overflow-hidden mt-4 pt-4 border-t border-blue-200/50">
             <a
-              ref={(el) => (mobileLinksRef.current[8] = el)}
+              ref={(el) => (mobileLinksRef.current[9] = el)}
               href="#contact"
               onClick={(e) => handleScroll(e, '#contact')}
               className="inline-flex items-center gap-2 text-lg sm:text-xl font-sans text-blue-600 font-medium hover:text-blue-700 transition-colors will-change-transform py-1"

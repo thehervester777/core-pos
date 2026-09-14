@@ -26,29 +26,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const lenisRef = useRef<Lenis | null>(null);
-  const progressBarRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
-      duration: 1.25,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.6,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
     });
 
     lenisRef.current = lenis;
 
-    // Connect Lenis with ScrollTrigger and progress bar
-    lenis.on('scroll', (e: any) => {
-      ScrollTrigger.update();
-      if (progressBarRef.current && typeof e.progress === 'number') {
-        progressBarRef.current.style.transform = `scaleX(${e.progress})`;
-      }
-    });
+    // Connect Lenis with ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
 
     const rafTicker = (time: number) => {
       lenis.raf(time * 1000);
@@ -89,13 +83,6 @@ export default function App() {
 
   return (
     <div className="app-wrapper bg-[#F0F7FF] text-slate-900 min-h-screen selection:bg-blue-600 selection:text-white relative">
-      {/* Top Reading Progress Bar */}
-      <div
-        ref={progressBarRef}
-        id="scroll-progress-indicator"
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-blue-500 via-sky-400 to-blue-600 origin-left z-[9990] pointer-events-none transform scale-x-0 shadow-[0_0_12px_rgba(37,99,235,0.7)]"
-      />
-
       {/* Custom Fluid Magnetic Cursor */}
       <Cursor />
 

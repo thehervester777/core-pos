@@ -147,20 +147,20 @@ export default function Testimonials() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex items-center gap-2 sm:gap-3 mt-8 sm:mt-12 md:mt-16">
+        <div className="flex gap-2 sm:gap-4 mt-8 sm:mt-12 md:mt-16">
           {feedbacks.map((_, i) => (
             <button
               key={i}
               id={`testimonial-dot-${i + 1}`}
-              className="p-1 cursor-pointer focus:outline-none"
+              className="p-2 cursor-pointer focus:outline-none"
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => goToQuote(i)}
             >
               <span
-                className={`block h-2 rounded-full transition-all duration-500 ease-out ${
+                className={`block w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full transition-all duration-500 ${
                   currentIndex === i
-                    ? 'w-8 bg-blue-600 shadow-[0_2px_8px_rgba(37,99,235,0.35)]'
-                    : 'w-2 bg-blue-200/80 hover:bg-blue-400/80'
+                    ? 'bg-blue-600 scale-125 shadow-xs'
+                    : 'bg-blue-200 hover:bg-blue-400'
                 }`}
               />
             </button>

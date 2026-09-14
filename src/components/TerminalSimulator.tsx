@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Plus, Minus, CheckCircle, Receipt, Trash2, Smartphone, CreditCard, Banknote, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { ShoppingCart, Plus, Minus, CheckCircle, Receipt, Trash2, Smartphone, CreditCard, Banknote } from 'lucide-react';
 import { PosProduct, CartItem } from '../types';
 
 const products: Record<'grocery' | 'pharmacy' | 'cafe', PosProduct[]> = {
@@ -136,42 +135,31 @@ export default function TerminalSimulator() {
               </button>
             </div>
 
-            {/* Product Grid with Smooth Transition */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3.5"
-              >
-                {products[activeTab].map((prod) => (
-                  <motion.div
-                    key={prod.id}
-                    whileHover={{ y: -2, scale: 1.01 }}
-                    whileTap={{ scale: 0.96 }}
-                    onClick={() => addToCart(prod)}
-                    className="group p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/80 border border-blue-100/90 hover:border-blue-400 hover:bg-white hover:shadow-[0_8px_24px_rgba(37,99,235,0.14)] transition-all duration-300 cursor-pointer flex flex-col justify-between h-28 sm:h-32 relative overflow-hidden shadow-[0_2px_6px_rgba(37,99,235,0.04)]"
-                  >
-                    <div className="flex justify-between items-start">
-                      <span className="text-[10px] sm:text-xs font-mono text-slate-400 uppercase font-medium">{prod.unit}</span>
-                      <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-50 group-hover:bg-blue-600 flex items-center justify-center transition-colors shrink-0">
-                        <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600 group-hover:text-white" />
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-slate-800 group-hover:text-blue-700 transition-colors line-clamp-1">
-                        {prod.name}
-                      </h4>
-                      <span className="text-xs sm:text-sm font-mono text-blue-600 font-bold">
-                        ৳{prod.price.toLocaleString()}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+            {/* Product Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
+              {products[activeTab].map((prod) => (
+                <div
+                  key={prod.id}
+                  onClick={() => addToCart(prod)}
+                  className="group p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/70 border border-blue-100/80 hover:border-blue-400 hover:bg-white hover:shadow-[0_8px_24px_rgba(37,99,235,0.12)] transition-all duration-300 cursor-pointer flex flex-col justify-between h-28 sm:h-32 relative overflow-hidden active:scale-95 shadow-[0_2px_6px_rgba(37,99,235,0.04)]"
+                >
+                  <div className="flex justify-between items-start">
+                    <span className="text-[10px] sm:text-xs font-mono text-slate-400 uppercase">{prod.unit}</span>
+                    <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-50 group-hover:bg-blue-600 flex items-center justify-center transition-colors shrink-0">
+                      <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600 group-hover:text-white" />
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-semibold text-slate-800 group-hover:text-blue-700 transition-colors line-clamp-1">
+                      {prod.name}
+                    </h4>
+                    <span className="text-xs sm:text-sm font-mono text-blue-600 font-bold">
+                      ৳{prod.price.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
             {/* Live Terminal Meta */}
             <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-blue-100 text-[11px] sm:text-xs text-slate-500 font-mono">
@@ -302,111 +290,78 @@ export default function TerminalSimulator() {
           </div>
         </div>
 
-        {/* Digital Receipt Modal with Spring Transition */}
-        <AnimatePresence>
-          {showReceipt && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setShowReceipt(false)}
-              className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-4"
-            >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.92, y: 24 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.94, y: 16 }}
-                transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-                onClick={(e) => e.stopPropagation()}
-                className="bg-white border border-blue-200/90 rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-md w-full relative shadow-[0_25px_70px_rgba(37,99,235,0.22)] font-mono text-xs max-h-[90vh] overflow-y-auto"
+        {/* Digital Receipt Modal */}
+        {showReceipt && (
+          <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="bg-white border border-blue-200/80 rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-md w-full relative shadow-[0_25px_70px_rgba(37,99,235,0.18)] font-mono text-xs max-h-[90vh] overflow-y-auto">
+              
+              {/* Receipt Header */}
+              <div className="text-center pb-4 border-b border-dashed border-slate-300">
+                <div className="text-base font-bold text-blue-600 tracking-wider mb-1">core Agency POS</div>
+                <div className="text-slate-800 font-sans font-semibold text-sm">SMART RETAIL DEMO LTD.</div>
+                <div className="text-slate-500 text-[11px] mt-0.5">Sector 11, Uttara, Dhaka-1230</div>
+                <div className="text-slate-400 text-[11px]">BIN: 002345678-0101</div>
+              </div>
+
+              {/* Receipt Meta */}
+              <div className="py-3 border-b border-dashed border-slate-300 flex justify-between text-[11px] text-slate-600">
+                <div>
+                  <div>Invoice: <span className="text-slate-900 font-bold">{invoiceId}</span></div>
+                  <div>Cashier: <span className="text-slate-900 font-bold">Rahim</span></div>
+                </div>
+                <div className="text-right">
+                  <div>Date: <span className="text-slate-900 font-bold">08/03/2026</span></div>
+                  <div>Paid: <span className="text-blue-600 font-bold">{paymentMethod}</span></div>
+                </div>
+              </div>
+
+              {/* Items List */}
+              <div className="py-3 border-b border-dashed border-slate-300 flex flex-col gap-2">
+                {cart.map((item) => (
+                  <div key={item.id} className="flex justify-between text-slate-800">
+                    <span>{item.name} x{item.qty}</span>
+                    <span className="font-semibold">৳{(item.price * item.qty).toLocaleString()}.00</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Summary */}
+              <div className="py-3 border-b border-dashed border-slate-300 flex flex-col gap-1 text-slate-600">
+                <div className="flex justify-between">
+                  <span>Subtotal:</span>
+                  <span>৳{subtotal.toLocaleString()}.00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>NBR VAT (5%):</span>
+                  <span>৳{vat.toLocaleString()}.00</span>
+                </div>
+                <div className="flex justify-between text-sm font-bold text-slate-900 pt-1">
+                  <span>Net Total:</span>
+                  <span className="text-blue-600">৳{netPayable.toLocaleString()}.00</span>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="text-center pt-4 text-[11px] text-slate-500 flex flex-col items-center gap-1">
+                <div className="flex items-center gap-1 text-emerald-600 font-sans font-medium">
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  Payment Verified via {paymentMethod} API
+                </div>
+                <p className="text-slate-600 font-medium">Thank You for Shopping!</p>
+                <span className="text-[10px] text-slate-400">Software Powered by core Agency POS</span>
+              </div>
+
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setShowReceipt(false)}
+                className="mt-6 w-full py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 font-sans font-semibold text-xs transition-colors cursor-pointer border border-blue-200/60"
               >
-                {/* Receipt Header */}
-                <div className="text-center pb-4 border-b border-dashed border-slate-300">
-                  <div className="text-base font-bold text-blue-600 tracking-wider mb-1 flex items-center justify-center gap-1.5">
-                    <span>core Agency POS</span>
-                  </div>
-                  <div className="text-slate-800 font-sans font-semibold text-sm">SMART RETAIL DEMO LTD.</div>
-                  <div className="text-slate-500 text-[11px] mt-0.5">Sector 11, Uttara, Dhaka-1230</div>
-                  <div className="text-slate-400 text-[11px]">BIN: 002345678-0101</div>
-                </div>
-
-                {/* Receipt Meta */}
-                <div className="py-3 border-b border-dashed border-slate-300 flex justify-between text-[11px] text-slate-600">
-                  <div>
-                    <div>Invoice: <span className="text-slate-900 font-bold">{invoiceId}</span></div>
-                    <div>Cashier: <span className="text-slate-900 font-bold">Rahim</span></div>
-                  </div>
-                  <div className="text-right">
-                    <div>Date: <span className="text-slate-900 font-bold">08/03/2026</span></div>
-                    <div>Paid: <span className="text-blue-600 font-bold">{paymentMethod}</span></div>
-                  </div>
-                </div>
-
-                {/* Items List */}
-                <div className="py-3 border-b border-dashed border-slate-300 flex flex-col gap-2">
-                  {cart.map((item) => (
-                    <div key={item.id} className="flex justify-between text-slate-800">
-                      <span>{item.name} x{item.qty}</span>
-                      <span className="font-semibold">৳{(item.price * item.qty).toLocaleString()}.00</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Summary */}
-                <div className="py-3 border-b border-dashed border-slate-300 flex flex-col gap-1 text-slate-600">
-                  <div className="flex justify-between">
-                    <span>Subtotal:</span>
-                    <span>৳{subtotal.toLocaleString()}.00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>NBR VAT (5%):</span>
-                    <span>৳{vat.toLocaleString()}.00</span>
-                  </div>
-                  <div className="flex justify-between text-sm font-bold text-slate-900 pt-1">
-                    <span>Net Total:</span>
-                    <span className="text-blue-600">৳{netPayable.toLocaleString()}.00</span>
-                  </div>
-                </div>
-
-                {/* Barcode & Footer */}
-                <div className="text-center pt-4 text-[11px] text-slate-500 flex flex-col items-center gap-2">
-                  <div className="flex items-center gap-1 text-emerald-600 font-sans font-medium">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    Payment Verified via {paymentMethod} API
-                  </div>
-                  <p className="text-slate-600 font-medium">Thank You for Shopping!</p>
-                  
-                  {/* Barcode Graphic */}
-                  <div className="w-40 h-8 bg-slate-100/70 border border-slate-200 flex items-center justify-center rounded px-2 my-1">
-                    <div className="flex items-center gap-1 h-5">
-                      <div className="w-1 h-full bg-slate-800" />
-                      <div className="w-0.5 h-full bg-slate-800" />
-                      <div className="w-1.5 h-full bg-slate-800" />
-                      <div className="w-0.5 h-full bg-slate-800" />
-                      <div className="w-2 h-full bg-slate-800" />
-                      <div className="w-1 h-full bg-slate-800" />
-                      <div className="w-0.5 h-full bg-slate-800" />
-                      <div className="w-1.5 h-full bg-slate-800" />
-                      <div className="w-2.5 h-full bg-slate-800" />
-                      <div className="w-1 h-full bg-slate-800" />
-                    </div>
-                  </div>
-                  <span className="text-[10px] text-slate-400">Software Powered by core Agency POS</span>
-                </div>
-
-                {/* Close Button */}
-                <button
-                  type="button"
-                  onClick={() => setShowReceipt(false)}
-                  className="mt-5 w-full py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 font-sans font-semibold text-xs transition-colors cursor-pointer border border-blue-200/60"
-                >
-                  Close Receipt
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                Close Receipt
+              </button>
+            </div>
+          </div>
+        )}
 
       </div>
     </section>

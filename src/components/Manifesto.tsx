@@ -19,25 +19,15 @@ export default function Manifesto() {
     const spans = manifestoRef.current.querySelectorAll('.word');
     if (spans.length === 0) return;
 
-    gsap.set(spans, {
-      color: 'rgba(148, 163, 184, 0.45)',
-      filter: 'blur(2.5px)',
-      y: 4,
-      autoAlpha: 0.4,
-    });
-
     const anim = gsap.to(spans, {
       color: 'rgba(15, 23, 42, 1)',
-      filter: 'blur(0px)',
-      y: 0,
-      autoAlpha: 1,
-      stagger: 0.08,
-      ease: 'power1.out',
+      stagger: 0.1,
+      ease: 'none',
       scrollTrigger: {
         trigger: manifestoRef.current,
-        start: 'top 82%',
-        end: 'bottom 48%',
-        scrub: 0.7,
+        start: 'top 80%',
+        end: 'bottom 50%',
+        scrub: 1,
       },
     });
 

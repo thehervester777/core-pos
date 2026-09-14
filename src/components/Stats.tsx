@@ -33,7 +33,8 @@ export default function Stats() {
           start: 'top 80%',
         },
         onUpdate: () => {
-          (counter as HTMLElement).innerText = Math.ceil(obj.val).toString();
+          const num = Math.ceil(obj.val);
+          (counter as HTMLElement).innerText = num.toLocaleString();
         },
       });
       anims.push(anim);
@@ -53,19 +54,19 @@ export default function Stats() {
     <section
       ref={statsRef}
       id="stats-section"
-      className="w-full bg-[#050505] text-white py-16 sm:py-24 md:py-32 border-t border-white/5 border-b border-b-white/5 relative z-10"
+      className="w-full bg-[#EAF3FD] text-slate-900 py-16 sm:py-24 md:py-32 border-t border-blue-200/50 border-b border-b-blue-200/50 relative z-10"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-24 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-8 text-left md:text-center">
         {stats.map((stat, i) => (
           <div key={i} className="flex flex-col gap-1.5 sm:gap-2 md:items-center">
-            <h4 className="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tight text-white mb-1 sm:mb-2 flex items-baseline md:justify-center">
-              <span className="text-white/30 text-2xl sm:text-3xl md:text-5xl mr-0.5 sm:mr-1">
+            <h4 className="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tight text-slate-900 mb-1 sm:mb-2 flex items-baseline md:justify-center">
+              <span className="text-slate-400 text-2xl sm:text-3xl md:text-5xl mr-0.5 sm:mr-1">
                 {stat.prefix}
               </span>
-              <span className="counterData text-[#3B82F6]">0</span>
-              <span className="text-white/60">{stat.suffix}</span>
+              <span className="counterData text-blue-600">0</span>
+              <span className="text-slate-700">{stat.suffix}</span>
             </h4>
-            <p className="text-[10px] sm:text-xs font-mono text-white/40 uppercase tracking-wider sm:tracking-widest">
+            <p className="text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-wider sm:tracking-widest font-semibold">
               {stat.label}
             </p>
           </div>

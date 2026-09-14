@@ -66,45 +66,45 @@ export default function BranchMapSync() {
   return (
     <section
       id="cloud-sync"
-      className="w-full bg-[#050505] text-white py-20 md:py-32 border-t border-white/10 relative overflow-hidden"
+      className="w-full bg-[#F0F7FF] text-slate-900 py-20 md:py-32 border-t border-blue-200/50 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Context & Overview (6 cols) */}
           <div className="lg:col-span-6 flex flex-col gap-5 sm:gap-6">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-white/60 w-fit">
-              <Globe className="w-3.5 h-3.5 text-[#3B82F6]" />
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono text-blue-700 font-medium w-fit">
+              <Globe className="w-3.5 h-3.5 text-blue-600" />
               Real-time Cloud Sync
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tight text-slate-900">
               Centralized Control Over{' '}
-              <span className="italic text-white/40">All Branches.</span>
+              <span className="italic text-blue-600">All Branches.</span>
             </h2>
-            <p className="text-white/70 font-sans text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 font-sans text-sm sm:text-base leading-relaxed">
               Manage stock allocation, staff attendance registers, and pricing matrices across Dhaka, Chittagong, Sylhet, and Rajshahi instantly from our centralized web-hub.
             </p>
-            <p className="text-white/45 font-sans text-xs sm:text-sm leading-relaxed">
+            <p className="text-slate-500 font-sans text-xs sm:text-sm leading-relaxed">
               Hover over our main business nodes on the map to inspect live counter active statuses and daily transaction volumes synced securely under sub-second latency.
             </p>
 
             {/* Selected Branch Detail Box */}
-            <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-[#0A0A0A] border border-white/10 flex flex-col gap-3">
+            <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-white/80 border border-blue-200/70 shadow-xs backdrop-blur-md flex flex-col gap-3">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                  <h4 className="font-semibold text-white text-sm sm:text-base">{selectedBranch.name}</h4>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <h4 className="font-semibold text-slate-900 text-sm sm:text-base">{selectedBranch.name}</h4>
                 </div>
-                <span className="text-[11px] sm:text-xs font-mono text-white/40">Ping: {selectedBranch.latency}</span>
+                <span className="text-[11px] sm:text-xs font-mono text-slate-400">Ping: {selectedBranch.latency}</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 text-xs font-mono pt-2 border-t border-white/5">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 text-xs font-mono pt-2 border-t border-blue-100">
                 <div>
-                  <span className="text-white/40 block text-[11px]">Register Terminals:</span>
-                  <span className="text-white font-bold text-xs sm:text-sm">{selectedBranch.terminals} Lanes Active</span>
+                  <span className="text-slate-400 block text-[11px]">Register Terminals:</span>
+                  <span className="text-slate-800 font-bold text-xs sm:text-sm">{selectedBranch.terminals} Lanes Active</span>
                 </div>
                 <div>
-                  <span className="text-white/40 block text-[11px]">Daily Transactions:</span>
-                  <span className="text-[#3B82F6] font-bold text-xs sm:text-sm">
+                  <span className="text-slate-400 block text-[11px]">Daily Transactions:</span>
+                  <span className="text-blue-600 font-bold text-xs sm:text-sm">
                     {selectedBranch.transactionsToday.toLocaleString()} orders
                   </span>
                 </div>
@@ -114,7 +114,7 @@ export default function BranchMapSync() {
             <div>
               <a
                 href="#terminal"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border border-white/20 text-white/90 font-sans font-medium text-sm hover:bg-white hover:text-black transition-all cursor-pointer text-center"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border border-blue-200 bg-white/80 text-blue-700 font-sans font-semibold text-sm hover:bg-blue-600 hover:text-white transition-all cursor-pointer text-center shadow-xs"
               >
                 Explore Franchise Plan
                 <ArrowRight className="w-4 h-4" />
@@ -123,15 +123,15 @@ export default function BranchMapSync() {
           </div>
 
           {/* Right Column: Visual Map (6 cols) */}
-          <div className="lg:col-span-6 bg-[#0A0A0A] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 relative min-h-[340px] sm:min-h-[380px] flex flex-col justify-between overflow-hidden">
+          <div className="lg:col-span-6 bg-white/80 border border-blue-200/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 relative min-h-[340px] sm:min-h-[380px] flex flex-col justify-between overflow-hidden backdrop-blur-2xl shadow-[0_20px_50px_rgba(37,99,235,0.08),0_1px_2px_rgba(255,255,255,0.95)_inset]">
             {/* Background Grid Lines */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.15),rgba(255,255,255,0))] pointer-events-none" />
-            <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.1),rgba(255,255,255,0))] pointer-events-none" />
+            <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
             {/* Top Bar info */}
-            <div className="flex justify-between items-center text-xs font-mono text-white/40 z-10">
+            <div className="flex justify-between items-center text-xs font-mono text-slate-500 z-10 font-medium">
               <span className="flex items-center gap-1.5">
-                <Radio className="w-3.5 h-3.5 text-[#3B82F6]" />
+                <Radio className="w-3.5 h-3.5 text-blue-600" />
                 Cluster Mesh Topology
               </span>
               <span>4 Geo-Zones</span>
@@ -140,7 +140,23 @@ export default function BranchMapSync() {
             {/* Interactive Node Canvas Area */}
             <div className="relative w-full h-64 sm:h-72 my-4 z-10 flex items-center justify-center">
               {/* Silhouette outline hint */}
-              <div className="w-48 sm:w-56 h-56 sm:h-64 border border-dashed border-white/10 rounded-[40px] absolute transform rotate-6 pointer-events-none" />
+              <div className="w-48 sm:w-56 h-56 sm:h-64 border border-dashed border-blue-200 rounded-[40px] absolute transform rotate-6 pointer-events-none" />
+
+              {/* Animated Network Ray SVG Canvas */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                <defs>
+                  <linearGradient id="rayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.2" />
+                  </linearGradient>
+                </defs>
+                {/* Dhaka to Rajshahi */}
+                <line x1="50%" y1="48%" x2="30%" y2="38%" stroke="url(#rayGrad)" strokeWidth="1.5" strokeDasharray="3 3" className="opacity-60" />
+                {/* Dhaka to Sylhet */}
+                <line x1="50%" y1="48%" x2="68%" y2="28%" stroke="url(#rayGrad)" strokeWidth="1.5" strokeDasharray="3 3" className="opacity-60" />
+                {/* Dhaka to Chittagong */}
+                <line x1="50%" y1="48%" x2="68%" y2="72%" stroke="url(#rayGrad)" strokeWidth="1.5" strokeDasharray="3 3" className="opacity-60" />
+              </svg>
 
               {/* Branch Markers */}
               {branches.map((branch) => {
@@ -152,29 +168,32 @@ export default function BranchMapSync() {
                     onClick={() => setSelectedBranch(branch)}
                     onMouseEnter={() => setSelectedBranch(branch)}
                     style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer focus:outline-none"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer focus:outline-none z-10"
                   >
                     <div className="relative flex items-center justify-center">
+                      {isSelected && (
+                        <span className="absolute w-8 h-8 rounded-full border border-blue-500 animate-radar-ring pointer-events-none" />
+                      )}
                       <span
                         className={`absolute w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-all ${
                           isSelected
-                            ? 'bg-[#3B82F6]/40 scale-150 animate-ping'
-                            : 'bg-white/10 group-hover:bg-[#3B82F6]/30'
+                            ? 'bg-blue-500/25 scale-125'
+                            : 'bg-blue-400/10 group-hover:bg-blue-500/20'
                         }`}
                       />
                       <span
                         className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border-2 transition-all ${
                           isSelected
-                            ? 'bg-[#3B82F6] border-white scale-125'
-                            : 'bg-white/80 border-black/80 group-hover:bg-[#3B82F6]'
+                            ? 'bg-blue-600 border-white scale-125 shadow-md ring-4 ring-blue-500/20'
+                            : 'bg-white border-blue-500 group-hover:bg-blue-500 shadow-xs'
                         }`}
                       />
                     </div>
                     <span
                       className={`absolute top-4 sm:top-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded-full transition-all ${
                         isSelected
-                          ? 'bg-white text-black font-bold shadow-lg'
-                          : 'bg-black/80 text-white/70 border border-white/10 group-hover:text-white'
+                          ? 'bg-blue-600 text-white font-bold shadow-md'
+                          : 'bg-white/95 text-slate-700 border border-blue-200/80 group-hover:text-blue-600 shadow-xs backdrop-blur-xs font-medium'
                       }`}
                     >
                       {branch.division}
@@ -185,9 +204,9 @@ export default function BranchMapSync() {
             </div>
 
             {/* Bottom Status Ticker */}
-            <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono text-white/40 pt-3 border-t border-white/5 z-10">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono text-slate-500 pt-3 border-t border-blue-100 z-10 font-medium">
               <span className="flex items-center gap-1.5">
-                <Server className="w-3.5 h-3.5 text-emerald-400" />
+                <Server className="w-3.5 h-3.5 text-emerald-600" />
                 Zero Counter Halt Guaranteed
               </span>
               <span>Replication: 99.99%</span>

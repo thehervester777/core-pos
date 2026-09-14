@@ -41,13 +41,13 @@ export default function Brands() {
   return (
     <section
       id="brands-section"
-      className="w-full bg-[#050505] py-12 md:py-24 overflow-hidden flex flex-col items-center justify-center border-t border-white/5 relative"
+      className="w-full bg-[#F0F7FF] py-12 md:py-20 overflow-hidden flex flex-col items-center justify-center border-t border-blue-200/50 relative"
     >
-      {/* Extreme fading edges for soft integration */}
-      <div className="absolute inset-y-0 left-0 w-12 sm:w-24 md:w-80 bg-linear-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-12 sm:w-24 md:w-80 bg-linear-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+      {/* Soft fading edges */}
+      <div className="absolute inset-y-0 left-0 w-12 sm:w-24 md:w-80 bg-gradient-to-r from-[#F0F7FF] to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-12 sm:w-24 md:w-80 bg-gradient-to-l from-[#F0F7FF] to-transparent z-10 pointer-events-none" />
 
-      <p className="text-[11px] sm:text-xs font-mono text-white/40 uppercase tracking-widest mb-8 md:mb-10 text-center relative z-20 px-4">
+      <p className="text-[11px] sm:text-xs font-mono text-blue-900/60 font-medium uppercase tracking-widest mb-8 md:mb-10 text-center relative z-20 px-4">
         Trusted by Bangladesh's leading retail & healthcare networks
       </p>
 
@@ -61,7 +61,7 @@ export default function Brands() {
             {brands.map((brand, i) => (
               <div
                 key={i}
-                className="text-xl sm:text-2xl md:text-4xl font-serif text-white/30 hover:text-white transition-colors duration-700 cursor-pointer select-none"
+                className="text-xl sm:text-2xl md:text-4xl font-serif text-slate-400 hover:text-blue-600 transition-colors duration-500 cursor-pointer select-none font-normal"
               >
                 {brand}
               </div>

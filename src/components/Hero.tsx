@@ -11,6 +11,7 @@ export default function Hero({ onNavigate }: HeroProps) {
   const word2Ref = useRef<HTMLDivElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
   const ctaContainerRef = useRef<HTMLDivElement>(null);
+  const pillsRef = useRef<HTMLDivElement>(null);
 
   const handleCtaClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -45,10 +46,17 @@ export default function Hero({ onNavigate }: HeroProps) {
         autoAlpha: 0,
       });
     }
+    if (pillsRef.current) {
+      gsap.set(pillsRef.current.children, {
+        y: 12,
+        autoAlpha: 0,
+        scale: 0.95,
+      });
+    }
 
     if (bgRef.current) {
       tl.to(bgRef.current, {
-        autoAlpha: 0.6,
+        autoAlpha: 0.7,
         scale: 1,
         duration: 2.5,
         ease: 'power2.out',
@@ -82,6 +90,21 @@ export default function Hero({ onNavigate }: HeroProps) {
       );
     }
 
+    if (pillsRef.current) {
+      tl.to(
+        pillsRef.current.children,
+        {
+          y: 0,
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.05,
+          ease: 'back.out(1.4)',
+        },
+        '-=0.8',
+      );
+    }
+
     if (ctaContainerRef.current) {
       tl.to(
         ctaContainerRef.current,
@@ -91,7 +114,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           duration: 1.2,
           ease: 'power3.out',
         },
-        '-=1.0',
+        '-=0.8',
       );
     }
 
@@ -132,23 +155,25 @@ export default function Hero({ onNavigate }: HeroProps) {
   return (
     <section
       id="agency"
-      className="w-full min-h-screen flex flex-col items-center justify-center relative overflow-hidden text-center pt-28 pb-16 md:pt-32 md:pb-20"
+      className="w-full min-h-screen flex flex-col items-center justify-center relative overflow-hidden text-center pt-28 pb-16 md:pt-32 md:pb-20 bg-gradient-to-b from-[#F0F7FF] via-[#EAF3FE] to-[#F0F7FF]"
     >
-      {/* Cinematic Backing */}
+      {/* Cinematic Glossy Backing */}
       <div
         ref={bgRef}
         className="absolute -inset-12 z-0 pointer-events-none will-change-transform hero-field"
       >
-        <div className="absolute inset-0 bg-linear-to-b from-[#050505]/40 via-[#050505]/10 to-[#050505]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050505_90%)]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-blue-400/25 via-sky-300/30 to-blue-600/15 blur-[120px] rounded-full animate-float-slow" />
+        <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-cyan-300/25 blur-[90px] rounded-full animate-float-reverse" />
+        <div className="absolute bottom-1/4 right-1/4 w-[280px] h-[280px] bg-blue-300/20 blur-[80px] rounded-full animate-float-slow" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F0F7FF]/20 via-transparent to-[#F0F7FF]" />
       </div>
 
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 max-w-7xl mx-auto my-auto">
-        <h1 className="text-4xl sm:text-6xl md:text-[7.2vw] font-serif leading-[1.08] md:leading-[0.92] tracking-tight text-white max-w-[95vw] md:max-w-7xl mx-auto flex flex-col items-center mix-blend-difference mb-4">
+        <h1 className="text-4xl sm:text-6xl md:text-[7.2vw] font-serif leading-[1.08] md:leading-[0.92] tracking-tight text-slate-900 max-w-[95vw] md:max-w-7xl mx-auto flex flex-col items-center mb-4">
           <div className="overflow-hidden pb-2 md:pb-4 -mb-2 md:-mb-4">
             <div
               ref={word1Ref}
-              className="flex items-center justify-center pt-2 will-change-transform text-center"
+              className="flex items-center justify-center pt-2 will-change-transform text-center text-slate-900"
             >
               Next-Gen Retail Engine
             </div>
@@ -158,27 +183,27 @@ export default function Hero({ onNavigate }: HeroProps) {
               ref={word2Ref}
               className="hero-second-line flex items-center justify-center gap-2 sm:gap-4 md:gap-6 will-change-transform pt-2"
             >
-              <span className="italic text-white/50 font-serif">
+              <span className="italic text-blue-600 font-serif">
                 for smart
               </span>{' '}
-              commerce.
+              <span className="text-slate-900">commerce.</span>
             </div>
           </div>
         </h1>
 
         <p
           ref={descRef}
-          className="text-sm sm:text-base md:text-xl text-white/60 max-w-3xl mt-4 sm:mt-6 font-sans font-light leading-relaxed mix-blend-difference px-2 sm:px-4"
+          className="text-sm sm:text-base md:text-xl text-slate-600 max-w-3xl mt-4 sm:mt-6 font-sans font-normal leading-relaxed px-2 sm:px-4"
         >
           core Agency offers powerful, industry-specific software designed to simplify business operations—whether you're running a retail shop, apparel store, chain restaurant, pharmacy, or distribution network. Manage your entire business from anywhere with our cloud-based solutions.
         </p>
 
         {/* Industry Pills */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-2xl px-2">
+        <div ref={pillsRef} className="mt-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-2xl px-2">
           {['Retail POS', 'Pharmacy POS', 'Restaurant POS', 'NBR VAT', 'Ecommerce Sync', 'Distribution ERP'].map((tag) => (
             <span
               key={tag}
-              className="text-[10px] sm:text-[11px] md:text-xs font-mono uppercase tracking-wider px-2.5 sm:px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-white/60"
+              className="text-[10px] sm:text-[11px] md:text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-white/80 backdrop-blur-md border border-blue-200/70 text-blue-800 shadow-[0_2px_8px_rgba(37,99,235,0.06)] font-medium transition-transform duration-200 hover:scale-105"
             >
               {tag}
             </span>
@@ -190,7 +215,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             id="hero-cta-terminal"
             href="#terminal"
             onClick={(e) => handleCtaClick(e, '#terminal')}
-            className="w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-white text-black rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:text-white transition-all duration-500 cursor-pointer shadow-[0_0_40px_rgba(255,255,255,0.15)] inline-block"
+            className="btn-shimmer w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full font-sans font-medium hover:from-blue-700 hover:to-blue-600 transition-all duration-300 cursor-pointer shadow-[0_8px_25px_rgba(37,99,235,0.32)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 inline-block"
           >
             Launch Live Terminal
           </a>
@@ -198,7 +223,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             id="hero-cta-features"
             href="#features"
             onClick={(e) => handleCtaClick(e, '#features')}
-            className="w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-transparent text-white border border-white/20 rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all duration-500 cursor-pointer inline-block"
+            className="w-full sm:w-auto text-center px-8 py-3.5 sm:py-4 bg-white/80 backdrop-blur-md text-slate-800 border border-blue-200/80 rounded-full font-sans font-medium hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 transition-all duration-300 cursor-pointer shadow-[0_4px_16px_rgba(37,99,235,0.08)] hover:-translate-y-0.5 inline-block"
           >
             Explore Features Map
           </a>

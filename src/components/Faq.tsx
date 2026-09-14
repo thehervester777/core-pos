@@ -53,32 +53,32 @@ export default function Faq({ onNavigate }: FaqProps) {
   return (
     <section
       id="faq"
-      className="w-full bg-[#050505] text-white py-20 md:py-32 border-t border-white/10 relative overflow-hidden"
+      className="w-full bg-[#F0F7FF] text-slate-900 py-20 md:py-32 border-t border-blue-200/50 relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3B82F6] opacity-5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400 opacity-10 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="px-4 sm:px-6 md:px-12 lg:px-24 max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10 md:gap-16 relative z-10">
         {/* Left Side: Title */}
         <div className="w-full md:w-1/3">
-          <span className="text-xs sm:text-sm font-mono text-white/50 uppercase tracking-widest mb-4 sm:mb-6 block">
+          <span className="text-xs sm:text-sm font-mono text-blue-600 font-semibold uppercase tracking-widest mb-4 sm:mb-6 block">
             FAQ
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif leading-tight text-slate-900">
             Frequently
             <br />
-            <span className="italic text-white/40">Asked</span>
+            <span className="italic text-blue-600">Asked</span>
           </h2>
-          <p className="text-white/50 mt-4 sm:mt-6 font-sans font-light text-sm sm:text-base">
+          <p className="text-slate-600 mt-4 sm:mt-6 font-sans text-sm sm:text-base leading-relaxed">
             Answers to common questions regarding our cloud POS architecture, offline engine, NBR tax compliance, and local deployment across Bangladesh.
           </p>
           <a
             id="faq-contact-link"
             href="#contact"
             onClick={handleStillQuestions}
-            className="inline-flex items-center gap-2 mt-6 sm:mt-8 text-xs sm:text-sm font-mono text-white/80 uppercase hover:text-white transition-colors group"
+            className="inline-flex items-center gap-2 mt-6 sm:mt-8 text-xs sm:text-sm font-mono text-blue-600 font-semibold uppercase hover:text-blue-700 transition-colors group"
           >
             Still have questions?
-            <span className="w-8 h-[1px] bg-white transform origin-left transition-transform duration-300 group-hover:scale-x-150" />
+            <span className="w-8 h-[1.5px] bg-blue-600 transform origin-left transition-transform duration-300 group-hover:scale-x-150" />
           </a>
         </div>
 
@@ -91,19 +91,19 @@ export default function Faq({ onNavigate }: FaqProps) {
                 key={index}
                 id={`faq-item-${index + 1}`}
                 type="button"
-                className="w-full border-b border-white/10 py-5 sm:py-8 text-left flex flex-col cursor-pointer group"
+                className="w-full border-b border-blue-200/70 py-5 sm:py-8 text-left flex flex-col cursor-pointer group"
                 onClick={() => toggle(index)}
                 aria-expanded={isOpen}
               >
                 <div className="w-full flex justify-between items-center gap-3">
-                  <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-serif text-white/80 group-hover:text-white transition-colors duration-300 leading-snug">
+                  <span className="text-base sm:text-xl md:text-2xl lg:text-3xl font-serif text-slate-800 group-hover:text-blue-600 transition-colors duration-300 leading-snug">
                     {item.q}
                   </span>
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center transform transition-transform duration-500 group-hover:bg-white/10 shrink-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-50 border border-blue-200/80 flex items-center justify-center transform transition-transform duration-500 group-hover:bg-blue-100 shrink-0 text-blue-600 shadow-xs">
                     {isOpen ? (
-                      <Minus className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                      <Minus className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                     ) : (
-                      <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                      <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                     )}
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default function Faq({ onNavigate }: FaqProps) {
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="pt-4 sm:pt-6 text-sm sm:text-base md:text-lg text-white/50 font-sans font-light leading-relaxed max-w-2xl">
+                      <p className="pt-4 sm:pt-6 text-sm sm:text-base md:text-lg text-slate-600 font-sans leading-relaxed max-w-2xl">
                         {item.a}
                       </p>
                     </motion.div>

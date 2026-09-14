@@ -2,60 +2,89 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function Cursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
     const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setIsTouchDevice(touch);
-    if (touch || !cursorRef.current) return;
+    if (touch || !dotRef.current || !ringRef.current) return;
 
-    const el = cursorRef.current;
-    gsap.set(el, { xPercent: -50, yPercent: -50 });
+    const dot = dotRef.current;
+    const ring = ringRef.current;
 
-    const xTo = gsap.quickTo(el, 'x', {
-      duration: 0.25,
-      ease: 'power3',
-    });
-    const yTo = gsap.quickTo(el, 'y', {
-      duration: 0.25,
-      ease: 'power3',
-    });
+    gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
 
-    let isActive = false;
+    // Snappy direct tracking for the inner precision dot
+    const dotX = gsap.quickTo(dot, 'x', { duration: 0.1, ease: 'power3.out' });
+    const dotY = gsap.quickTo(dot, 'y', { duration: 0.1, ease: 'power3.out' });
+
+    // Smooth fluid trailing inertia for the outer ambient ring
+    const ringX = gsap.quickTo(ring, 'x', { duration: 0.35, ease: 'power2.out' });
+    const ringY = gsap.quickTo(ring, 'y', { duration: 0.35, ease: 'power2.out' });
+
+    let isVisible = false;
 
     const moveCursor = (e: MouseEvent) => {
-      if (!isActive) {
-        isActive = true;
-        gsap.to(el, { autoAlpha: 1, duration: 0.3 });
+      if (!isVisible) {
+        isVisible = true;
+        gsap.to([dot, ring], { autoAlpha: 1, duration: 0.4, ease: 'power2.out' });
       }
-      xTo(e.clientX);
-      yTo(e.clientY);
+      dotX(e.clientX);
+      dotY(e.clientY);
+      ringX(e.clientX);
+      ringY(e.clientY);
     };
 
     const handleHover = () => {
-      gsap.to(el, {
-        scale: 3.5,
-        background: 'rgba(255,255,255,0.1)',
-        border: '1px solid rgba(255,255,255,0.5)',
-        duration: 0.3,
-        ease: 'expo.out',
+      gsap.to(ring, {
+        scale: 1.9,
+        backgroundColor: 'rgba(37, 99, 235, 0.12)',
+        borderColor: 'rgba(37, 99, 235, 0.65)',
+        duration: 0.35,
+        ease: 'back.out(1.7)',
+      });
+      gsap.to(dot, {
+        scale: 0.6,
+        backgroundColor: '#1D4ED8',
+        duration: 0.25,
       });
     };
 
     const handleLeave = () => {
-      gsap.to(el, {
+      gsap.to(ring, {
         scale: 1,
-        background: 'white',
-        border: '0px solid transparent',
-        duration: 0.3,
-        ease: 'expo.out',
+        backgroundColor: 'rgba(37, 99, 235, 0.05)',
+        borderColor: 'rgba(59, 130, 246, 0.35)',
+        duration: 0.35,
+        ease: 'power2.out',
       });
+      gsap.to(dot, {
+        scale: 1,
+        backgroundColor: '#2563EB',
+        duration: 0.25,
+      });
+    };
+
+    const handleMouseDown = () => {
+      gsap.to(ring, { scale: 0.8, duration: 0.15, ease: 'power2.out' });
+      gsap.to(dot, { scale: 1.4, duration: 0.15, ease: 'power2.out' });
+    };
+
+    const handleMouseUp = () => {
+      gsap.to(ring, { scale: 1, duration: 0.25, ease: 'back.out(2)' });
+      gsap.to(dot, { scale: 1, duration: 0.25, ease: 'back.out(2)' });
+    };
+
+    const handleWindowLeave = () => {
+      isVisible = false;
+      gsap.to([dot, ring], { autoAlpha: 0, duration: 0.3 });
     };
 
     const attachEventListeners = () => {
       document
-        .querySelectorAll('a, button, [contenteditable="true"]')
+        .querySelectorAll('a, button, [role="button"], input, textarea, select, .cursor-pointer')
         .forEach((target) => {
           const htmlTarget = target as HTMLElement;
           if (!htmlTarget.dataset.cursorBound) {
@@ -67,6 +96,9 @@ export default function Cursor() {
     };
 
     window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseleave', handleWindowLeave);
     attachEventListeners();
 
     const observer = new MutationObserver((mutations) => {
@@ -81,8 +113,11 @@ export default function Cursor() {
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseleave', handleWindowLeave);
       observer.disconnect();
-      document.querySelectorAll('a, button').forEach((target) => {
+      document.querySelectorAll('a, button, [role="button"], input, textarea, select, .cursor-pointer').forEach((target) => {
         target.removeEventListener('mouseenter', handleHover);
         target.removeEventListener('mouseleave', handleLeave);
       });
@@ -92,10 +127,19 @@ export default function Cursor() {
   if (isTouchDevice) return null;
 
   return (
-    <div
-      ref={cursorRef}
-      id="custom-cursor"
-      className="hidden md:block fixed top-0 left-0 w-5 h-5 bg-white mix-blend-difference rounded-full pointer-events-none z-[999] opacity-0 invisible transform-gpu"
-    />
+    <>
+      {/* Outer fluid trailing ring */}
+      <div
+        ref={ringRef}
+        id="custom-cursor-ring"
+        className="hidden md:block fixed top-0 left-0 w-8 h-8 rounded-full border border-blue-400/40 bg-blue-500/5 backdrop-blur-[0.5px] pointer-events-none z-[9999] opacity-0 invisible transform-gpu shadow-[0_0_15px_rgba(37,99,235,0.15)] transition-colors duration-200"
+      />
+      {/* Inner precision dot */}
+      <div
+        ref={dotRef}
+        id="custom-cursor-dot"
+        className="hidden md:block fixed top-0 left-0 w-2.5 h-2.5 bg-blue-600 rounded-full pointer-events-none z-[10000] opacity-0 invisible transform-gpu shadow-[0_0_8px_rgba(37,99,235,0.6)]"
+      />
+    </>
   );
 }

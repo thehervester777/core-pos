@@ -117,19 +117,19 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="w-full bg-[#050505] text-white py-20 sm:py-32 md:py-48 flex items-center justify-center relative overflow-hidden border-t border-white/5"
+      className="w-full bg-[#F0F7FF] text-slate-900 py-20 sm:py-32 md:py-48 flex items-center justify-center relative overflow-hidden border-t border-blue-200/50"
     >
-      {/* Extremely soft background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[500px] bg-[#3B82F6]/5 blur-[200px] rounded-full pointer-events-none" />
+      {/* Soft blue glossy background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[500px] bg-blue-400/10 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 relative z-10 flex flex-col items-center text-center">
-        <span className="text-xs font-mono text-white/30 uppercase tracking-widest mb-8 sm:mb-12 md:mb-16">
+        <span className="text-xs font-mono text-blue-600 font-semibold uppercase tracking-widest mb-8 sm:mb-12 md:mb-16">
           Client Voices
         </span>
 
         <h3
           ref={quoteRef}
-          className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-serif text-white/90 leading-[1.4] md:leading-[1.2] tracking-tight mb-8 sm:mb-12 md:mb-16 flex items-center justify-center will-change-transform min-h-[140px] sm:min-h-[180px] md:min-h-auto"
+          className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-serif text-slate-800 leading-[1.4] md:leading-[1.2] tracking-tight mb-8 sm:mb-12 md:mb-16 flex items-center justify-center will-change-transform min-h-[140px] sm:min-h-[180px] md:min-h-auto"
         >
           "{feedbacks[currentIndex].text}"
         </h3>
@@ -138,29 +138,29 @@ export default function Testimonials() {
           ref={nameRef}
           className="flex flex-col items-center gap-2 sm:gap-3 will-change-transform"
         >
-          <h4 className="text-white font-medium text-xs sm:text-sm md:text-base uppercase tracking-widest">
+          <h4 className="text-slate-900 font-semibold text-xs sm:text-sm md:text-base uppercase tracking-widest">
             {feedbacks[currentIndex].name}
           </h4>
-          <span className="text-xs sm:text-sm font-sans text-white/40 max-w-md">
+          <span className="text-xs sm:text-sm font-sans text-slate-500 max-w-md font-medium">
             {feedbacks[currentIndex].role}
           </span>
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex gap-2 sm:gap-4 mt-8 sm:mt-12 md:mt-16">
+        <div className="flex items-center gap-2 sm:gap-3 mt-8 sm:mt-12 md:mt-16">
           {feedbacks.map((_, i) => (
             <button
               key={i}
               id={`testimonial-dot-${i + 1}`}
-              className="p-2 cursor-pointer focus:outline-none"
+              className="p-1 cursor-pointer focus:outline-none"
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => goToQuote(i)}
             >
               <span
-                className={`block w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full transition-all duration-500 ${
+                className={`block h-2 rounded-full transition-all duration-500 ease-out ${
                   currentIndex === i
-                    ? 'bg-white scale-125'
-                    : 'bg-white/20 hover:bg-white/50'
+                    ? 'w-8 bg-blue-600 shadow-[0_2px_8px_rgba(37,99,235,0.35)]'
+                    : 'w-2 bg-blue-200/80 hover:bg-blue-400/80'
                 }`}
               />
             </button>
